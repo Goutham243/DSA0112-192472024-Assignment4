@@ -1,1 +1,111 @@
+Q6 – VEHICLE RENTAL FLEET
 
+STAGE 1 – INTERPRET THE PROBLEM
+
+Entities:
+1. Vehicle
+2. Bicycle
+3. MotorVehicle
+4. TwoWheeler
+5. Car
+6. ElectricCar
+7. ElectricBus
+
+Common attributes:
+- Registration number
+- Daily rental rate
+- Rental status
+
+Special attributes:
+- Motor vehicles: fuel or charge level and service due date
+- Cars: seating capacity
+- Electric cars: battery capacity and energy consumption
+
+Common behaviours:
+- Rent vehicle
+- Return vehicle
+- Display vehicle details
+- Calculate rental charge
+
+STAGE 2 – CLASS HIERARCHY
+
+                    Vehicle (Abstract)
+                          |
+             -------------------------
+             |                       |
+          Bicycle               MotorVehicle
+                                     |
+                              ----------------
+                              |              |
+                         TwoWheeler        Car
+                                              |
+                                         ElectricCar
+
+ElectricBus is also derived from MotorVehicle.
+
+Vehicle contains the pure virtual function:
+virtual double calculateCharge(int days) const = 0;
+
+STAGE 3 – CRITICAL DESIGN DECISIONS
+
+1. Common data is placed in the Vehicle base class.
+2. MotorVehicle contains fuel or charge level and service date.
+3. Car contains seating capacity.
+4. ElectricCar contains battery capacity and electricity charges.
+5. calculateCharge() is virtual and overridden by derived classes.
+6. The fleet is stored using an array of Vehicle pointers.
+7. A virtual destructor is used for safe polymorphic destruction.
+
+STAGE 4 – RENTING AND RETURNING PSEUDOCODE
+
+ALGORITHM: RENT VEHICLE
+
+1. Start.
+2. Select a vehicle.
+3. Check whether it is already rented.
+4. If available, mark it as rented.
+5. Otherwise, display that it is unavailable.
+6. Stop.
+
+ALGORITHM: RETURN VEHICLE
+
+1. Start.
+2. Select the rented vehicle.
+3. Calculate the rental charge.
+4. Calculate late days.
+5. If returned late, add the late charge.
+6. Mark the vehicle as available.
+7. Display the final charge.
+8. Stop.
+
+STAGE 5 – IMPLEMENTATION
+
+The program uses an abstract base class and derived classes.
+Runtime polymorphism calls the correct calculateCharge()
+function for each vehicle.
+
+A new ElectricBus class is added without modifying
+the existing vehicle classes.
+
+COMPLEXITY ANALYSIS
+
+1. Rental charge calculation: O(1)
+2. Renting one vehicle: O(1)
+3. Returning one vehicle: O(1)
+4. Listing n vehicles: O(n)
+5. Searching n vehicles: O(n)
+6. Fleet pointer storage: O(n)
+
+ALTERNATIVE DESIGN
+
+A single Vehicle class with a type code and switch statement
+could also calculate charges.
+
+Both switch-based and virtual-function charge calculations
+take O(1) time per call.
+
+However, the single-class approach contains unused fields
+and requires modifying the switch whenever a new vehicle
+type is added.
+
+The inheritance approach is more reusable and extensible.
