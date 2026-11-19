@@ -1,1 +1,35 @@
+Q5 – COMPARISON
+
+1. Direct Object:
+Accessed using the object name.
+Safe and simple. The object lifetime is controlled by its scope.
+
+2. Pointer:
+Accessed using the -> operator.
+Can point to an existing object. It must be valid before use.
+
+3. Reference:
+Accessed using the reference name.
+It is an alias for an existing object and cannot be reassigned.
+
+4. Dynamic Object:
+Created using new and accessed through a pointer.
+Its memory must be released using delete.
+
+5. this Pointer:
+this is a pointer to the current object.
+*this refers to the current object itself.
+It is used to distinguish data members from parameters and to return the current object for method chaining.
+
+6. Returning Cart instead of Cart&:
+Returning Cart creates a copy of the object.
+Returning Cart& returns the same object without making a copy.
+
+7. Highest Cart Total:
+An array of pointers is traversed using indexing.
+Each cart total is compared, and the highest total is selected.
+
+8. Complexity:
+Finding the highest total among n carts takes O(n) time.
+The pointer array requires O(n) additional space.
 
