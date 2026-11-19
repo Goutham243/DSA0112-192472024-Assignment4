@@ -1,1 +1,23 @@
+Q4 – PREDICT THE OUTPUT
+=======================
 
+Expected Output:
+
+3.5 4 3.5
+
+Explanation:
+
+1. p->rate() prints 3.5 because rate() is
+   non-virtual and uses compile-time binding.
+
+2. p->vrate() prints 4 because vrate() is
+   virtual and uses runtime polymorphism.
+
+3. copy.vrate() prints 3.5 because assigning
+   SeniorAccount to Account causes object slicing.
+
+Conclusion:
+
+Virtual functions enable runtime polymorphism.
+Object slicing removes the derived-class portion
+when a derived object is copied into a base object.
