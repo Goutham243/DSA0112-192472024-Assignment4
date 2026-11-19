@@ -1,1 +1,56 @@
+Q2 – PREDICT THE OUTPUT
+=======================
 
+1. Prediction with Virtual Inheritance
+
+Expected Output:
+
+Person Student
+Staff TA
+
+Explanation:
+
+Person is printed only once because both Student and Staff inherit Person using virtual inheritance.
+
+The virtual base class Person is constructed only once by the most-derived class TeachingAssistant.
+
+Construction order:
+1. Person
+2. Student
+3. Staff
+4. TeachingAssistant
+
+2. Prediction Without Virtual Inheritance
+
+Modified declarations:
+
+struct Student : Person {};
+struct Staff : Person {};
+
+Expected Output:
+
+Person Student
+Person Staff TA
+
+Explanation:
+
+After removing virtual inheritance, Student and Staff each contain a separate Person base-class subobject.
+
+Therefore, Person is constructed twice.
+
+Construction order:
+1. Person through Student
+2. Student
+3. Person through Staff
+4. Staff
+5. TeachingAssistant
+
+3. Compiler Messages
+
+The modified program compiles successfully because it does not directly access any ambiguous Person member.
+
+However, accessing ta.name directly would produce a compilation error because TeachingAssistant contains two Person subobjects, making name ambiguous.
+
+4. Conclusion
+
+Virtual inheritance solves the diamond problem by ensuring that TeachingAssistant contains only one shared Person base-class subobject.
